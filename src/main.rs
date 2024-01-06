@@ -75,8 +75,7 @@ impl StarkNetService {
     }
 
     pub async fn fetch_reserves(&self) -> Vec<FieldElement> {
-        let reserves = self
-            .rpc_client
+        self.rpc_client
             .call(
                 FunctionCall {
                     contract_address: self.swap_pool,
@@ -86,9 +85,7 @@ impl StarkNetService {
                 BlockId::Tag(BlockTag::Latest),
             )
             .await
-            .unwrap();
-
-        reserves
+            .unwrap()
     }
 
     pub async fn fetch_k(&self) -> FieldElement {
